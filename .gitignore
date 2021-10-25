@@ -31,3 +31,5 @@ custom-elements.json
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+textures/*.jpg
