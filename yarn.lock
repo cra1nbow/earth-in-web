@@ -1939,6 +1939,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/three@npm:^0.133.1":
+  version: 0.133.1
+  resolution: "@types/three@npm:0.133.1"
+  checksum: 5259827ac1cdee93cca3cb5d212d8624b1186165ab2fcff3430c9546190a517bbab29f041ac63b74ae81fc5834879d5afa2c6206297558829b775d908d603362
+  languageName: node
+  linkType: hard
+
 "@types/trusted-types@npm:^2.0.2":
   version: 2.0.2
   resolution: "@types/trusted-types@npm:2.0.2"
@@ -3370,6 +3377,7 @@ __metadata:
     "@open-wc/eslint-config": ^4.3.0
     "@rollup/plugin-babel": ^5.3.0
     "@rollup/plugin-node-resolve": ^13.0.6
+    "@types/three": ^0.133.1
     "@typescript-eslint/eslint-plugin": ^4.33.0
     "@typescript-eslint/parser": ^4.33.0
     "@web/dev-server": ^0.1.25
@@ -3388,6 +3396,7 @@ __metadata:
     rollup: ^2.58.0
     rollup-plugin-terser: ^7.0.2
     rollup-plugin-workbox: ^6.2.0
+    three: ^0.133.1
     tslib: ^2.3.1
     typescript: ^4.4.4
   languageName: unknown
@@ -6841,9 +6850,9 @@ fsevents@~2.3.2:
   linkType: hard
 
 "spawn-command@npm:^0.0.2-1":
-  version: 0.0.2
-  resolution: "spawn-command@npm:0.0.2"
-  checksum: e35c5d28177b4d461d33c88cc11f6f3a5079e2b132c11e1746453bbb7a0c0b8a634f07541a2a234fa4758239d88203b758def509161b651e81958894c0b4b64b
+  version: 0.0.2-1
+  resolution: "spawn-command@npm:0.0.2-1"
+  checksum: 2cac8519332193d1ed37d57298c4a1f73095e9edd20440fbab4aa47f531da83831734f2b51c44bb42b2747bf3485dec3fa2b0a1003f74c67561f2636622e328b
   languageName: node
   linkType: hard
 
@@ -7190,6 +7199,13 @@ fsevents@~2.3.2:
   version: 0.2.0
   resolution: "text-table@npm:0.2.0"
   checksum: b6937a38c80c7f84d9c11dd75e49d5c44f71d95e810a3250bd1f1797fc7117c57698204adf676b71497acc205d769d65c16ae8fa10afad832ae1322630aef10a
+  languageName: node
+  linkType: hard
+
+"three@npm:^0.133.1":
+  version: 0.133.1
+  resolution: "three@npm:0.133.1"
+  checksum: ab9bea5f74b63d791ea1c0aa3c8953fd973bace5d043e9a9d94215f654d9d91576482e70637427e9e9cbc1e19d7417622ff6c15c065d3541ad2068b68c0b8657
   languageName: node
   linkType: hard
 
