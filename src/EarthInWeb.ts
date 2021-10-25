@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export class EarthInWeb extends LitElement {
   static styles = css``;
@@ -15,11 +16,25 @@ export class EarthInWeb extends LitElement {
     500
   );
 
+  sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(15),
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load('textures/earth.jpg'),
+    })
+  );
+
   constructor() {
     super();
     this._handleResize();
     this.camera.position.set(0, 0, 100);
     this.camera.lookAt(0, 0, 0);
+
+    const light = new THREE.PointLight(0xffffff, 1, 0);
+    light.position.set(200, 200, 100);
+    this.scene.add(this.sphere, light, new THREE.AmbientLight(0xffffff, 0.3));
+
+    const controls = new OrbitControls(this.camera, this.renderer.domElement);
+    controls.enablePan = false;
   }
 
   connectedCallback() {
@@ -30,17 +45,13 @@ export class EarthInWeb extends LitElement {
 
   private _handleResize = () => {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.updateProjectionMatrix();
   };
 
   private _draw = () => {
     requestAnimationFrame(this._draw);
 
-    this.scene.add(
-      new THREE.Mesh(
-        new THREE.SphereGeometry(15),
-        new THREE.MeshBasicMaterial({ color: 0xffff00 })
-      )
-    );
     this.renderer.render(this.scene, this.camera);
   };
 
