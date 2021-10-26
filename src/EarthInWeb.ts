@@ -27,7 +27,21 @@ export class EarthInWeb extends LitElement {
     new THREE.SphereGeometry(5),
     new THREE.MeshBasicMaterial({
       map: new THREE.TextureLoader().load('textures/earth.jpg'),
-    })
+    }),
+  );
+
+  luna = new THREE.Mesh(
+    new THREE.SphereGeometry(3),
+    new THREE.MeshBasicMaterial({
+      map: new THREE.TextureLoader().load('textures/luna.jpg'),
+    }),
+  );
+
+  lunaOrbit = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(
+      new THREE.Path().absarc(0, 0, 10, 0, Math.PI * 2, true).getPoints(24),
+    ),
+    new THREE.LineBasicMaterial({ color: 0xffffff }),
   );
 
   clock = new THREE.Clock();
@@ -52,7 +66,9 @@ export class EarthInWeb extends LitElement {
       light,
       new THREE.AmbientLight(0xffffff, 0.3),
       this.luna,
+      this.lunaOrbit,
     );
+    this.lunaOrbit.rotateX((-90 * Math.PI) / 180);
 
     Object.entries(EarthInWeb._data).forEach(([, data]) => {
       const circle = new THREE.Line(
@@ -91,6 +107,16 @@ export class EarthInWeb extends LitElement {
 
     this.earth.position.x = Math.cos(this.clock.getElapsedTime() * 0.1) * 30;
     this.earth.position.z = -Math.sin(this.clock.getElapsedTime() * 0.1) * 30;
+
+    this.lunaOrbit.position.x =
+      Math.cos(this.clock.getElapsedTime() * 0.1) * 30;
+    this.lunaOrbit.position.z =
+      -Math.sin(this.clock.getElapsedTime() * 0.1) * 30;
+
+    this.luna.position.x =
+      this.earth.position.x + Math.cos(this.clock.getElapsedTime() * 0.8) * 10;
+    this.luna.position.z =
+      this.earth.position.z - Math.sin(this.clock.getElapsedTime() * 0.8) * 10;
 
     this.renderer.render(this.scene, this.camera);
   };
