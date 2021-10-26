@@ -13,14 +13,14 @@ export class EarthInWeb extends LitElement {
     45,
     window.innerWidth / window.innerHeight,
     1,
-    5000
+    5000,
   );
 
   sun = new THREE.Mesh(
     new THREE.SphereGeometry(10),
     new THREE.MeshBasicMaterial({
       map: new THREE.TextureLoader().load('textures/solar.jpg'),
-    })
+    }),
   );
 
   earth = new THREE.Mesh(
@@ -50,7 +50,8 @@ export class EarthInWeb extends LitElement {
       this.sun,
       this.earth,
       light,
-      new THREE.AmbientLight(0xffffff, 0.3)
+      new THREE.AmbientLight(0xffffff, 0.3),
+      this.luna,
     );
 
     Object.entries(EarthInWeb._data).forEach(([, data]) => {
@@ -58,9 +59,9 @@ export class EarthInWeb extends LitElement {
         new THREE.BufferGeometry().setFromPoints(
           new THREE.Path()
             .absarc(0, 0, data.radius, 0, Math.PI * 2, true)
-            .getPoints(24)
+            .getPoints(24),
         ),
-        new THREE.LineBasicMaterial({ color: 0xffffff })
+        new THREE.LineBasicMaterial({ color: 0xffffff }),
       );
       circle.rotateX((-90 * Math.PI) / 180);
       this.scene.add(circle);
