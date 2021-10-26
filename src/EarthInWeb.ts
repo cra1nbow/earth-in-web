@@ -13,11 +13,11 @@ export class EarthInWeb extends LitElement {
     45,
     window.innerWidth / window.innerHeight,
     1,
-    500
+    5000
   );
 
   sun = new THREE.Mesh(
-    new THREE.SphereGeometry(5),
+    new THREE.SphereGeometry(10),
     new THREE.MeshBasicMaterial({
       map: new THREE.TextureLoader().load('textures/solar.jpg'),
     })
@@ -32,13 +32,17 @@ export class EarthInWeb extends LitElement {
 
   clock = new THREE.Clock();
 
+  private static _data = {
+    earth: {
+      radius: 30,
+    },
+  };
+
   constructor() {
     super();
     this._handleResize();
     this.camera.position.set(0, 0, 100);
     this.camera.lookAt(0, 0, 0);
-
-    this.earth.position.set(30, 0, 0);
 
     const light = new THREE.PointLight(0xffffff, 1, 0);
     light.position.set(200, 200, 100);
@@ -48,6 +52,19 @@ export class EarthInWeb extends LitElement {
       light,
       new THREE.AmbientLight(0xffffff, 0.3)
     );
+
+    Object.entries(EarthInWeb._data).forEach(([, data]) => {
+      const circle = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(
+          new THREE.Path()
+            .absarc(0, 0, data.radius, 0, Math.PI * 2, true)
+            .getPoints(24)
+        ),
+        new THREE.LineBasicMaterial({ color: 0xffffff })
+      );
+      circle.rotateX((-90 * Math.PI) / 180);
+      this.scene.add(circle);
+    });
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enablePan = false;
@@ -68,7 +85,7 @@ export class EarthInWeb extends LitElement {
   private _draw = () => {
     requestAnimationFrame(this._draw);
 
-    this.sun.rotateY(1e-2);
+    this.sun.rotateY(5e-3);
     this.earth.rotateY(1e-2);
 
     this.earth.position.x = Math.cos(this.clock.getElapsedTime() * 0.1) * 30;
