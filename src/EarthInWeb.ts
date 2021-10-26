@@ -41,7 +41,7 @@ export class EarthInWeb extends LitElement {
   constructor() {
     super();
     this._handleResize();
-    this.camera.position.set(0, 0, 100);
+    this.camera.position.set(0, 30, 100);
     this.camera.lookAt(0, 0, 0);
 
     const light = new THREE.PointLight(0xffffff, 1, 0);
